@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+#main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+
+    #board {
+        border: 7px double #000000;
+        // background: url(./img/tlo-05.png) no-repeat center center fixed;     
+        // background-size: cover;
+        overflow: hidden;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        width: 100%;
+        height: 100vh;
+
+        #ship {
+            position: absolute;
+
+
+            #ship_img {
+                max-width: 100px;
+            }
+        }
+
+
+        #astro1 {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            opacity: 0.6;
+            width: 100%;
+
+            img {
+                max-width: 80%;
+            }
+        }
+
+        #bullet {
+            position: absolute;
+            opacity: 0;
+            left: 800px;
+            top: 500px;
+            height: 15px;
+            width: 4px;
+            background-color: #000000;
+        }
+
+        #planetoid1 {
+            position: absolute;
+            left: 800px;
+            top: 50px;
+            width: 150px;
+            height: 150px;
+
+            img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        #diamond1 {
+            position: absolute;
+            top: 10px;
+
+            img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+    }
+
+    #board:hover {
+        cursor: none;
+    }
+
+    #gamestats {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        width: 100%;
+        padding: 1em;
+    }
+}
