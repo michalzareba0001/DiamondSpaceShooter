@@ -73,6 +73,10 @@
   height: 150px;
 }
 
+#planetoid2{
+  display: none;
+}
+
 #main #board #diamond1 {
   position: absolute;
   top: 10px;
