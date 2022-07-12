@@ -58,12 +58,12 @@
   position: absolute;
   left: 600px;
   top: 50px;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
 }
 #main #board #planetoid2 img {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
 }
 #main #board #diamond1 {
   position: absolute;

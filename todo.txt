@@ -1,8 +1,12 @@
-2022-07-12 naprawić diament po zderzeniu
+2022-07-12 AUTOMATYCZNIE KOMPILUJ TS???
 2022-07-12 naprawić planeta po zderzeniu
-2022-07-12 dodać 2 obiekt
+2022-07-12 dodać 2 obiekt timer:0h-0m-9s
 2022-07-12 wybuch obiektu
 2022-07-12 gameover
 2022-07-12 lewa strona jakiś opis
 2022-07-12 śmierć ludzika
+2022-07-12 Game start strona
+2022-07-12 zrobić dobrą prędkość obiektów
 x 2022-07-12 2022-07-12 github
+x 2022-07-12 2022-07-12 2 obiekt kolizje
+x 2022-07-12 2022-07-12 naprawić diament po zderzeniu

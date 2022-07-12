@@ -23,9 +23,9 @@ const diamond = {
 //virables
 
 var shootY = -15;
-var diamY = 5;
-var planetoidY = 10;
-var planetoidY2 = 20;
+var diamY = 15;
+var planetoidY = 13;
+var planetoidY2 = 17;
 var score = 0;
 var lives = 5;
 
@@ -79,8 +79,10 @@ window.addEventListener('load', () => {
         planetoidanim();
         shootanim();
         bul_vs_p1();
+        bul_vs_p2();
         diam_vs_ship();
         ship_vs_p1();
+        ship_vs_p2();
     }, 25);
 
 
@@ -136,7 +138,7 @@ window.addEventListener('load', () => {
         var planetoid2_X = randomNumber(BOARD_LEFT, BOARD_RIGHT-planet1.width);
         planetoid2.style.left = planetoid2_X + 'px';
         planetoid2.style.top = -100 + 'px';
-        planetsPos();
+        planetsPos2();
     }
 
 
@@ -147,6 +149,7 @@ window.addEventListener('load', () => {
         planetoid1.style.top = -100 + 'px';
         planetoid1.style.width = planet1.width + 'px';
         planetoid1.style.height = planet1.height + 'px';
+        planetsPos1();
     }
 
     let planetoidanim = () => {
@@ -160,21 +163,49 @@ window.addEventListener('load', () => {
         planetoid2.style.top = planetoid2Y + 'px';
     }
 
-    let planetsPos = () => {
+    let planetsPos2 = () => {
         var planetoid1 = document.getElementById('planetoid1');
         var planetoid2 = document.getElementById('planetoid2');
-        // let planetoid1Top = parseInt(planetoid1.style.top);
-        // let planetoid1Down = planetoid1Top + planetoid1.offsetHeight;
         let planetoid1Left = parseInt(planetoid1.style.left);
         let planetoid1Right = planetoid1Left + planetoid1.offsetWidth;
 
-        // let planetoid2Top = parseInt(planetoid2.style.top);
-        // let planetoid2Down = planetoid2Top + planetoid2.offsetHeight;
         let planetoid2Left = parseInt(planetoid2.style.left);
         let planetoid2Right = planetoid2Left + planetoid2.offsetWidth;
 
        if (planetoid2Right <= planetoid1Left && planetoid2Left >= planetoid1Right) {
             planetoid2_start();        }
+    }
+        let planetsPos1 = () => {
+        var planetoid1 = document.getElementById('planetoid1');
+        var planetoid2 = document.getElementById('planetoid2');
+        let planetoid1Left = parseInt(planetoid1.style.left);
+        let planetoid1Right = planetoid1Left + planetoid1.offsetWidth;
+        
+        let planetoid2Left = parseInt(planetoid2.style.left);
+        let planetoid2Right = planetoid2Left + planetoid2.offsetWidth;
+
+        if (planetoid1Right <= planetoid2Left && planetoid1Left >= planetoid2Right) {
+            planetoid1_start();        }
+    }
+
+
+    let diam_vs_ship = () => {
+        var diam = document.getElementById('diamond1');
+        var diam_top = parseInt(diam.style.top);
+        var diam_bottom = diam_top + parseInt(diam.style.height);
+        var diam_left = parseInt(diam.style.left);
+        var diam_right = diam_left + parseInt(diam.style.width);
+    
+        var ship = document.getElementById('ship');
+        var ship_top = parseInt(ship.style.top);
+        var ship_bottom = ship_top + parseInt(ship.style.height);
+        var ship_left = parseInt(ship.style.left);
+        var ship_right = ship_left + parseInt(ship.style.width);
+    
+        if (diam_bottom > ship_top && diam_top < ship_bottom && diam_left > ship_left && diam_right < ship_right) {
+            score_count(100);
+            diamond1_start(); 
+        }
     }
 });
 
@@ -198,24 +229,26 @@ let bul_vs_p1 = () => {
     }
 }
 
-let diam_vs_ship = () => {
-    var diam = document.getElementById('diamond1');
-    var diam_top = parseInt(diam.style.top);
-    var diam_bottom = diam_top + parseInt(diam.style.height);
-    var diam_left = parseInt(diam.style.left);
-    var diam_right = diam_left + parseInt(diam.style.width);
+let bul_vs_p2 = () => {
+    var bullet = document.getElementById('bullet');
+    var bul_top = parseInt(bullet.style.top);
+    var bul_bottom = parseInt(bullet.style.top) + parseInt(bullet.style.height);
+    var bul_left = parseInt(bullet.style.left);
+    var bul_right = bul_left + 4;
 
-    var ship = document.getElementById('ship');
-    var ship_top = parseInt(ship.style.top);
-    var ship_bottom = ship_top + parseInt(ship.style.height);
-    var ship_left = parseInt(ship.style.left);
-    var ship_right = ship_left + parseInt(ship.style.width);
-
-    if (diam_bottom > ship_top && diam_top < ship_bottom && diam_left > ship_left && diam_right < ship_right) {
-        score_count(100);
-        diam.style.top = -50 + 'px'; 
+    var planetoid2 = document.getElementById('planetoid2');
+    var p2_top = parseInt(planetoid2.style.top);
+    var p2_bottom = parseInt(planetoid2.style.top) + parseInt(planetoid2.style.height);
+    var p2_left = parseInt(planetoid2.style.left);
+    var p2_right = parseInt(planetoid2.style.left) + parseInt(planetoid2.style.width);
+    if (bul_top < p2_bottom && bul_top > p2_top && bul_left > p2_left && bul_right < p2_right) {
+        shoot();
+        score_count(1);
     }
 }
+
+
+
 
 let ship_vs_p1 = () => {
     var ship = document.getElementById('ship');
@@ -241,6 +274,32 @@ let ship_vs_p1 = () => {
 
     }
 }
+
+let ship_vs_p2 = () => {
+    var ship = document.getElementById('ship');
+    var ship_top = parseInt(ship.style.top);
+    var ship_bottom = ship_top + parseInt(ship.style.height);
+    var ship_left = parseInt(ship.style.left);
+    var ship_right = ship_left + parseInt(ship.style.width);
+
+    var planetoid2 = document.getElementById('planetoid2');
+    var p2_top = parseInt(planetoid2.style.top);
+    var p2_bottom = parseInt(planetoid2.style.top) + parseInt(planetoid2.style.height);
+    var p2_left = parseInt(planetoid2.style.left);
+    var p2_right = parseInt(planetoid2.style.left) + parseInt(planetoid2.style.width);
+
+    if (ship_top < p2_bottom && ship_bottom > p2_top && ship_right > p2_left && ship_left < p2_right) {
+
+        lives_count(1);
+        planetoid2.style.top = -200 + 'px';
+        ship.style.display = 'none';
+        setTimeout( function (){
+            ship.style.display = 'block';
+        }, 200);
+
+    }
+}
+
 //score and lives
 let score_count = (a) => {
     score = score + a;
@@ -275,4 +334,6 @@ let shootanim = () => {
     bulletY = bulletY + shootY;
     bullet.style.top = bulletY + 'px';
 }
+
+
 

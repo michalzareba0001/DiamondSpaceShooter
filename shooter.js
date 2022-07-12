@@ -17,9 +17,9 @@ var diamond = {
 };
 //virables
 var shootY = -15;
-var diamY = 5;
-var planetoidY = 10;
-var planetoidY2 = 20;
+var diamY = 15;
+var planetoidY = 13;
+var planetoidY2 = 17;
 var score = 0;
 var lives = 5;
 // Load all elements
@@ -62,8 +62,10 @@ window.addEventListener('load', function () {
         planetoidanim();
         shootanim();
         bul_vs_p1();
+        bul_vs_p2();
         diam_vs_ship();
         ship_vs_p1();
+        ship_vs_p2();
     }, 25);
     //random position
     function randomNumber(min, max) {
@@ -105,7 +107,7 @@ window.addEventListener('load', function () {
         var planetoid2_X = randomNumber(BOARD_LEFT, BOARD_RIGHT - planet1.width);
         planetoid2.style.left = planetoid2_X + 'px';
         planetoid2.style.top = -100 + 'px';
-        planetsPos();
+        planetsPos2();
     };
     var planetoid1_start = function () {
         var planetoid1 = document.getElementById('planetoid1');
@@ -114,6 +116,7 @@ window.addEventListener('load', function () {
         planetoid1.style.top = -100 + 'px';
         planetoid1.style.width = planet1.width + 'px';
         planetoid1.style.height = planet1.height + 'px';
+        planetsPos1();
     };
     var planetoidanim = function () {
         var planetoid1 = document.getElementById('planetoid1');
@@ -125,19 +128,42 @@ window.addEventListener('load', function () {
         planetoid1.style.top = planetoid1Y + 'px';
         planetoid2.style.top = planetoid2Y + 'px';
     };
-    var planetsPos = function () {
+    var planetsPos2 = function () {
         var planetoid1 = document.getElementById('planetoid1');
         var planetoid2 = document.getElementById('planetoid2');
-        // let planetoid1Top = parseInt(planetoid1.style.top);
-        // let planetoid1Down = planetoid1Top + planetoid1.offsetHeight;
         var planetoid1Left = parseInt(planetoid1.style.left);
         var planetoid1Right = planetoid1Left + planetoid1.offsetWidth;
-        // let planetoid2Top = parseInt(planetoid2.style.top);
-        // let planetoid2Down = planetoid2Top + planetoid2.offsetHeight;
         var planetoid2Left = parseInt(planetoid2.style.left);
         var planetoid2Right = planetoid2Left + planetoid2.offsetWidth;
         if (planetoid2Right <= planetoid1Left && planetoid2Left >= planetoid1Right) {
             planetoid2_start();
+        }
+    };
+    var planetsPos1 = function () {
+        var planetoid1 = document.getElementById('planetoid1');
+        var planetoid2 = document.getElementById('planetoid2');
+        var planetoid1Left = parseInt(planetoid1.style.left);
+        var planetoid1Right = planetoid1Left + planetoid1.offsetWidth;
+        var planetoid2Left = parseInt(planetoid2.style.left);
+        var planetoid2Right = planetoid2Left + planetoid2.offsetWidth;
+        if (planetoid1Right <= planetoid2Left && planetoid1Left >= planetoid2Right) {
+            planetoid1_start();
+        }
+    };
+    var diam_vs_ship = function () {
+        var diam = document.getElementById('diamond1');
+        var diam_top = parseInt(diam.style.top);
+        var diam_bottom = diam_top + parseInt(diam.style.height);
+        var diam_left = parseInt(diam.style.left);
+        var diam_right = diam_left + parseInt(diam.style.width);
+        var ship = document.getElementById('ship');
+        var ship_top = parseInt(ship.style.top);
+        var ship_bottom = ship_top + parseInt(ship.style.height);
+        var ship_left = parseInt(ship.style.left);
+        var ship_right = ship_left + parseInt(ship.style.width);
+        if (diam_bottom > ship_top && diam_top < ship_bottom && diam_left > ship_left && diam_right < ship_right) {
+            score_count(100);
+            diamond1_start();
         }
     };
 });
@@ -158,20 +184,20 @@ var bul_vs_p1 = function () {
         score_count(1);
     }
 };
-var diam_vs_ship = function () {
-    var diam = document.getElementById('diamond1');
-    var diam_top = parseInt(diam.style.top);
-    var diam_bottom = diam_top + parseInt(diam.style.height);
-    var diam_left = parseInt(diam.style.left);
-    var diam_right = diam_left + parseInt(diam.style.width);
-    var ship = document.getElementById('ship');
-    var ship_top = parseInt(ship.style.top);
-    var ship_bottom = ship_top + parseInt(ship.style.height);
-    var ship_left = parseInt(ship.style.left);
-    var ship_right = ship_left + parseInt(ship.style.width);
-    if (diam_bottom > ship_top && diam_top < ship_bottom && diam_left > ship_left && diam_right < ship_right) {
-        score_count(100);
-        diam.style.top = -50 + 'px';
+var bul_vs_p2 = function () {
+    var bullet = document.getElementById('bullet');
+    var bul_top = parseInt(bullet.style.top);
+    var bul_bottom = parseInt(bullet.style.top) + parseInt(bullet.style.height);
+    var bul_left = parseInt(bullet.style.left);
+    var bul_right = bul_left + 4;
+    var planetoid2 = document.getElementById('planetoid2');
+    var p2_top = parseInt(planetoid2.style.top);
+    var p2_bottom = parseInt(planetoid2.style.top) + parseInt(planetoid2.style.height);
+    var p2_left = parseInt(planetoid2.style.left);
+    var p2_right = parseInt(planetoid2.style.left) + parseInt(planetoid2.style.width);
+    if (bul_top < p2_bottom && bul_top > p2_top && bul_left > p2_left && bul_right < p2_right) {
+        shoot();
+        score_count(1);
     }
 };
 var ship_vs_p1 = function () {
@@ -188,6 +214,26 @@ var ship_vs_p1 = function () {
     if (ship_top < p1_bottom && ship_bottom > p1_top && ship_right > p1_left && ship_left < p1_right) {
         lives_count(1);
         planetoid1.style.top = -200 + 'px';
+        ship.style.display = 'none';
+        setTimeout(function () {
+            ship.style.display = 'block';
+        }, 200);
+    }
+};
+var ship_vs_p2 = function () {
+    var ship = document.getElementById('ship');
+    var ship_top = parseInt(ship.style.top);
+    var ship_bottom = ship_top + parseInt(ship.style.height);
+    var ship_left = parseInt(ship.style.left);
+    var ship_right = ship_left + parseInt(ship.style.width);
+    var planetoid2 = document.getElementById('planetoid2');
+    var p2_top = parseInt(planetoid2.style.top);
+    var p2_bottom = parseInt(planetoid2.style.top) + parseInt(planetoid2.style.height);
+    var p2_left = parseInt(planetoid2.style.left);
+    var p2_right = parseInt(planetoid2.style.left) + parseInt(planetoid2.style.width);
+    if (ship_top < p2_bottom && ship_bottom > p2_top && ship_right > p2_left && ship_left < p2_right) {
+        lives_count(1);
+        planetoid2.style.top = -200 + 'px';
         ship.style.display = 'none';
         setTimeout(function () {
             ship.style.display = 'block';
