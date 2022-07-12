@@ -6,6 +6,7 @@
 2022-07-12 śmierć ludzika
 2022-07-12 Game start strona
 2022-07-12 zrobić dobrą prędkość obiektów
+2022-07-12 znaleźć fonty
 x 2022-07-12 2022-07-12 github
 x 2022-07-12 2022-07-12 2 obiekt kolizje
 x 2022-07-12 2022-07-12 naprawić diament po zderzeniu
