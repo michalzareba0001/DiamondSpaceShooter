@@ -1,4 +1,3 @@
-2022-07-12 AUTOMATYCZNIE KOMPILUJ TS???
 2022-07-12 naprawić planeta po zderzeniu
 2022-07-12 dodać 2 obiekt timer:0h-0m-9s
 2022-07-12 wybuch obiektu
@@ -10,3 +9,4 @@
 x 2022-07-12 2022-07-12 github
 x 2022-07-12 2022-07-12 2 obiekt kolizje
 x 2022-07-12 2022-07-12 naprawić diament po zderzeniu
+x 2022-07-12 2022-07-12 AUTOMATYCZNIE KOMPILUJ TS???
