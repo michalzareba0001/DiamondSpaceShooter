@@ -10,6 +10,11 @@ const planet1 = {
     height: 150
 }
 
+const planet2 = {
+    width: 200,
+    height: 200
+}
+
 const diamond = {
     width: 60,
     height: 60
@@ -20,6 +25,7 @@ const diamond = {
 var shootY = -15;
 var diamY = 5;
 var planetoidY = 10;
+var planetoidY2 = 20;
 var score = 0;
 var lives = 5;
 
@@ -34,7 +40,8 @@ window.addEventListener('load', () => {
     const BOARD_RIGHT = BOARD_LEFT + BOARD_WIDTH;
     var ship = document.getElementById('ship');
     var diamond1 = document.getElementById('diamond1');
-    var planetoid1 = document.getElementById('planetoid1')
+    var planetoid1 = document.getElementById('planetoid1');
+    var planetoid2 = document.getElementById('planetoid2');
 
     ship.style.width = sp_ship.width + 'px';
     ship.style.height = sp_ship.height + 'px';
@@ -49,7 +56,10 @@ window.addEventListener('load', () => {
 
     planetoid1.style.top = -100 + 'px';
     planetoid1.style.left = BOARD_LEFT + BOARD_WIDTH / 2 + 'px';
-
+    planetoid2.style.top = -100 + 'px';
+    planetoid2.style.left = BOARD_LEFT + BOARD_WIDTH / 6 + 'px';
+    planetoid2.style.width = planet2.width + 'px';
+    planetoid2.style.height = planet2.height + 'px';
 
     setInterval(function () {
         shoot();
@@ -57,6 +67,7 @@ window.addEventListener('load', () => {
 
     setInterval(function () {
         planetoid1_start();
+        planetoid2_start();
     }, 3000);
 
     setInterval(function () {
@@ -125,7 +136,8 @@ window.addEventListener('load', () => {
         var planetoid2_X = randomNumber(BOARD_LEFT, BOARD_RIGHT-planet1.width);
         planetoid2.style.left = planetoid2_X + 'px';
         planetoid2.style.top = -100 + 'px';
-
+        planetsPos();
+    }
 
 
     let planetoid1_start = () => {
@@ -139,9 +151,30 @@ window.addEventListener('load', () => {
 
     let planetoidanim = () => {
         var planetoid1 = document.getElementById('planetoid1');
+        var planetoid2 = document.getElementById('planetoid2');
         let planetoid1Y = parseInt(planetoid1.style.top);
+        let planetoid2Y = parseInt(planetoid2.style.top);
         planetoid1Y = planetoid1Y + planetoidY;
+        planetoid2Y = planetoid2Y + planetoidY2;
         planetoid1.style.top = planetoid1Y + 'px';
+        planetoid2.style.top = planetoid2Y + 'px';
+    }
+
+    let planetsPos = () => {
+        var planetoid1 = document.getElementById('planetoid1');
+        var planetoid2 = document.getElementById('planetoid2');
+        // let planetoid1Top = parseInt(planetoid1.style.top);
+        // let planetoid1Down = planetoid1Top + planetoid1.offsetHeight;
+        let planetoid1Left = parseInt(planetoid1.style.left);
+        let planetoid1Right = planetoid1Left + planetoid1.offsetWidth;
+
+        // let planetoid2Top = parseInt(planetoid2.style.top);
+        // let planetoid2Down = planetoid2Top + planetoid2.offsetHeight;
+        let planetoid2Left = parseInt(planetoid2.style.left);
+        let planetoid2Right = planetoid2Left + planetoid2.offsetWidth;
+
+       if (planetoid2Right <= planetoid1Left && planetoid2Left >= planetoid1Right) {
+            planetoid2_start();        }
     }
 });
 
