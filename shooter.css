@@ -1,55 +1,39 @@
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #main {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
-
 #main #board {
   border: 7px double #000000;
   overflow: hidden;
-  -ms-grid-column: 2;
-      grid-column-start: 2;
+  grid-column-start: 2;
   grid-column-end: 3;
   width: 100%;
   height: 100vh;
 }
-
 #main #board #ship {
   position: absolute;
 }
-
 #main #board #ship #ship_img {
   max-width: 100px;
 }
-
 #main #board #astro1 {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
   opacity: 0.6;
   width: 100%;
 }
-
 #main #board #astro1 img {
   max-width: 80%;
 }
-
 #main #board #bullet {
   position: absolute;
   opacity: 0;
@@ -59,7 +43,6 @@
   width: 4px;
   background-color: #000000;
 }
-
 #main #board #planetoid1 {
   position: absolute;
   left: 800px;
@@ -67,35 +50,35 @@
   width: 150px;
   height: 150px;
 }
-
 #main #board #planetoid1 img {
   width: 150px;
   height: 150px;
 }
-
-#planetoid2{
-  display: none;
+#main #board #planetoid2 {
+  position: absolute;
+  left: 400px;
+  top: 50px;
+  width: 150px;
+  height: 150px;
 }
-
+#main #board #planetoid2 img {
+  width: 150px;
+  height: 150px;
+}
 #main #board #diamond1 {
   position: absolute;
   top: 10px;
 }
-
 #main #board #diamond1 img {
   width: 60px;
   height: 60px;
 }
-
 #main #board:hover {
   cursor: none;
 }
-
 #main #gamestats {
-  -ms-grid-column: 3;
-      grid-column-start: 3;
+  grid-column-start: 3;
   grid-column-end: 4;
   width: 100%;
   padding: 1em;
-}
-/*# sourceMappingURL=shooter.css.map */
+}/*# sourceMappingURL=shooter.css.map */
