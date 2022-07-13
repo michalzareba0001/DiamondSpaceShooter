@@ -150,6 +150,15 @@
   width: 4px;
   background-color: #000000;
 }
+#main #board #ufobullet {
+  position: absolute;
+  opacity: 0;
+  left: 800px;
+  top: 0px;
+  height: 18px;
+  width: 8px;
+  background-color: #ff0000;
+}
 #main #board #planetoid1 {
   position: absolute;
   left: 800px;

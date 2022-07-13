@@ -21,15 +21,17 @@ var juefo = {
 };
 //virables
 var shootY = -15;
+var ufoshootY = 18;
 var diamY = 15;
-var planetoidY = 13;
-var planetoidY2 = 17;
+var planetoidY = 12;
+var planetoidY2 = 15;
 var score = 0;
 var lives = 5;
 var ufoSpeed = 5;
 var ufoLeft = 0;
 var ufoRight = 0;
 var direction = 'right';
+var ufo_lives = 3;
 window.addEventListener('load', function () {
     var startScreen = document.getElementById('startScreen');
     startScreen.style.display = 'flex';
@@ -71,6 +73,7 @@ var loadAll = function () {
     ufo.style.height = juefo.height + 'px';
     setInterval(function () {
         shoot();
+        ufoshoot();
     }, 1600);
     setInterval(function () {
         planetoid1_start();
@@ -84,13 +87,15 @@ var loadAll = function () {
         planetoidanim();
         ufoposition();
         shootanim();
+        ufoshootanim();
         bul_vs_p1();
         bul_vs_p2();
         bul_vs_ufo();
+        ufobul_vs_ship();
         diam_vs_ship();
         ship_vs_p1();
         ship_vs_p2();
-    }, 25);
+    }, 30);
     //random position
     function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min) + min);
@@ -263,8 +268,24 @@ var bul_vs_ufo = function () {
     if (bul_top < ufo_bottom && bul_left > ufo_left && bul_right < ufo_right) {
         shoot();
         score_count(10);
+        ufo_lives_count(1);
     }
-    console.log(bul_right);
+};
+var ufobul_vs_ship = function () {
+    var ufobullet = document.getElementById('ufobullet');
+    var ufobul_top = parseInt(ufobullet.style.top);
+    var ufobul_bottom = ufobul_top + ufobullet.offsetHeight;
+    var ufobul_left = parseInt(ufobullet.style.left);
+    var ufobul_right = ufobul_left + 8;
+    var ship = document.getElementById('ship');
+    var ship_top = parseInt(ship.style.top);
+    var ship_bottom = ship_top + parseInt(ship.style.height);
+    var ship_left = parseInt(ship.style.left);
+    var ship_right = ship_left + parseInt(ship.style.width);
+    if (ufobul_bottom > ship_top && ufobul_top < ship_bottom && ufobul_left > ship_left && ufobul_right < ship_right) {
+        lives_count(1);
+        ufoshoot();
+    }
 };
 var ship_vs_p1 = function () {
     var ship = document.getElementById('ship');
@@ -319,6 +340,13 @@ var lives_count = function (b) {
         location.reload();
     }
 };
+var ufo_lives_count = function (c) {
+    ufo_lives = ufo_lives - c;
+    if (ufo_lives == 0) {
+        document.getElementById('ufo').style.display = 'none';
+        score_count(300);
+    }
+};
 //shooting
 var shoot = function () {
     var ship = document.getElementById('ship');
@@ -334,4 +362,19 @@ var shootanim = function () {
     var bulletY = parseInt(bullet.style.top);
     bulletY = bulletY + shootY;
     bullet.style.top = bulletY + 'px';
+};
+var ufoshoot = function () {
+    var ufo = document.getElementById('ufo');
+    var ufobullet = document.getElementById('ufobullet');
+    var ufoshoot_startx = parseInt(ufo.style.left) + ufo.offsetWidth / 2 - 2;
+    var ufoshoot_starty = parseInt(ufo.style.top);
+    ufobullet.style.opacity = '1';
+    ufobullet.style.left = ufoshoot_startx + 'px';
+    ufobullet.style.top = ufoshoot_starty + 'px';
+};
+var ufoshootanim = function () {
+    var ufobullet = document.getElementById('ufobullet');
+    var ufobulletY = parseInt(ufobullet.style.top);
+    ufobulletY = ufobulletY + ufoshootY;
+    ufobullet.style.top = ufobulletY + 'px';
 };
