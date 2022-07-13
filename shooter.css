@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Trispace:wght@300&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -6,19 +7,36 @@
 
 #startScreen {
   position: fixed;
-  top: 25%;
-  left: 25%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 50%;
-  min-height: 50%;
+  width: 100%;
+  height: 100%;
   border: 2px solid #000000;
-  background-color: #feec00;
+  background-color: rgba(254, 236, 0, 0.7);
   border-radius: 20px;
   z-index: 10;
   padding: 3em;
+}
+#startScreen h1 {
+  font-family: "Trispace", sans-serif;
+  font-size: 4em;
+  color: #000000;
+  text-align: center;
+}
+#startScreen h2 {
+  font-family: "Trispace", sans-serif;
+  font-size: 2.5em;
+  color: #000000;
+  text-align: center;
+}
+#startScreen h3 {
+  margin-top: 1em;
+  font-size: 1.5em;
+}
+#startScreen .btnContainer {
+  margin-top: 3em;
   /*startButton
       background-color: #000000;
       border: 2px solid #000000;
@@ -29,18 +47,16 @@
       cursor: pointer;
   */
 }
-#startScreen .btn-12,
-#startScreen .btn-12 *,
-#startScreen .btn-12 :after,
-#startScreen .btn-12 :before,
-#startScreen .btn-12:after,
-#startScreen .btn-12:before {
+#startScreen .btnContainer .btn-7,
+#startScreen .btnContainer .btn-7 *,
+#startScreen .btnContainer .btn-7 :after,
+#startScreen .btnContainer .btn-7 :before,
+#startScreen .btnContainer .btn-7:after,
+#startScreen .btnContainer .btn-7:before {
   border: 0 solid;
   box-sizing: border-box;
-  min-height: 100px;
-  min-width: 100px;
 }
-#startScreen .btn-12 {
+#startScreen .btnContainer .btn-7 {
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: button;
   background-color: #000;
@@ -48,7 +64,7 @@
   color: #fff;
   cursor: pointer;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  font-size: 3em;
+  font-size: 100%;
   font-weight: 900;
   line-height: 1.5;
   margin: 0;
@@ -56,46 +72,43 @@
   padding: 0;
   text-transform: uppercase;
 }
-#startScreen .btn-12:disabled {
+#startScreen .btnContainer .btn-7:disabled {
   cursor: default;
 }
-#startScreen .btn-12:-moz-focusring {
+#startScreen .btnContainer .btn-7:-moz-focusring {
   outline: auto;
 }
-#startScreen .btn-12 svg {
+#startScreen .btnContainer .btn-7 svg {
   display: block;
   vertical-align: middle;
 }
-#startScreen .btn-12 [hidden] {
+#startScreen .btnContainer .btn-7 [hidden] {
   display: none;
 }
-#startScreen .btn-12 {
+#startScreen .btnContainer .btn-7 {
   border-radius: 99rem;
   border-width: 2px;
+  -webkit-mask-image: none;
   overflow: hidden;
   padding: 0.8rem 3rem;
   position: relative;
 }
-#startScreen .btn-12 span {
+#startScreen .btnContainer .btn-7 span {
   mix-blend-mode: difference;
 }
-#startScreen .btn-12:after,
-#startScreen .btn-12:before {
-  background: linear-gradient(90deg, #fff 25%, transparent 0, transparent 50%, #fff 0, #fff 75%, transparent 0);
+#startScreen .btnContainer .btn-7:before {
+  background: #fff;
+  -webkit-clip-path: polygon(0 calc(var(--progress, 100%) / 2), 100% calc(var(--progress, 100%) / 2), 100% calc(100% - var(--progress, 100%) / 2), 0 calc(100% - var(--progress, 100%) / 2));
+  clip-path: polygon(0 calc(var(--progress, 100%) / 2), 100% calc(var(--progress, 100%) / 2), 100% calc(100% - var(--progress, 100%) / 2), 0 calc(100% - var(--progress, 100%) / 2));
   content: "";
   inset: 0;
   position: absolute;
-  transform: translateY(var(--progress, 100%));
-  transition: transform 0.2s ease;
+  transition: -webkit-clip-path 0.2s ease;
+  transition: clip-path 0.2s ease;
+  transition: clip-path 0.2s ease, -webkit-clip-path 0.2s ease;
 }
-#startScreen .btn-12:after {
-  --progress: -100%;
-  background: linear-gradient(90deg, transparent 0, transparent 25%, #fff 0, #fff 50%, transparent 0, transparent 75%, #fff 0);
-  z-index: -1;
-}
-#startScreen .btn-12:hover:after,
-#startScreen .btn-12:hover:before {
-  --progress: 0;
+#startScreen .btnContainer .btn-7:hover:before {
+  --progress: 0%;
 }
 
 #main {
@@ -150,7 +163,7 @@
 }
 #main #board #planetoid2 {
   position: absolute;
-  left: 600px;
+  left: 1000px;
   top: 50px;
   width: 200px;
   height: 200px;
@@ -158,6 +171,16 @@
 #main #board #planetoid2 img {
   width: 200px;
   height: 200px;
+}
+#main #board #ufo {
+  position: absolute;
+  left: 650px;
+  top: 5px;
+  width: 120px;
+  height: 77px;
+}
+#main #board #ufo img {
+  width: 120px;
 }
 #main #board #diamond1 {
   position: absolute;

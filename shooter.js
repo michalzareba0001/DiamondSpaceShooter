@@ -15,6 +15,10 @@ var diamond = {
     width: 60,
     height: 60
 };
+var juefo = {
+    width: 120,
+    height: 77
+};
 //virables
 var shootY = -15;
 var diamY = 15;
@@ -22,8 +26,21 @@ var planetoidY = 13;
 var planetoidY2 = 17;
 var score = 0;
 var lives = 5;
-// Load all elements
+var ufoSpeed = 5;
+var ufoLeft = 0;
+var ufoRight = 0;
+var direction = 'right';
 window.addEventListener('load', function () {
+    var startScreen = document.getElementById('startScreen');
+    startScreen.style.display = 'flex';
+});
+var startbtn = function () {
+    var startScreen = document.getElementById('startScreen');
+    startScreen.style.display = 'none';
+    loadAll();
+};
+// Load all elements
+var loadAll = function () {
     var BOARD = document.getElementById('board');
     var BOARD_WIDTH = BOARD.offsetWidth;
     var BOARD_HEIGHT = BOARD.offsetHeight;
@@ -33,6 +50,7 @@ window.addEventListener('load', function () {
     var diamond1 = document.getElementById('diamond1');
     var planetoid1 = document.getElementById('planetoid1');
     var planetoid2 = document.getElementById('planetoid2');
+    var ufo = document.getElementById('ufo');
     ship.style.width = sp_ship.width + 'px';
     ship.style.height = sp_ship.height + 'px';
     ship.style.top = BOARD_HEIGHT / 1.3 + 'px';
@@ -47,9 +65,13 @@ window.addEventListener('load', function () {
     planetoid2.style.left = BOARD_LEFT + BOARD_WIDTH / 6 + 'px';
     planetoid2.style.width = planet2.width + 'px';
     planetoid2.style.height = planet2.height + 'px';
+    ufo.style.left = BOARD_LEFT + 'px';
+    ufo.style.top = 5 + 'px';
+    ufo.style.width = juefo.width + 'px';
+    ufo.style.height = juefo.height + 'px';
     setInterval(function () {
         shoot();
-    }, 750);
+    }, 1600);
     setInterval(function () {
         planetoid1_start();
         planetoid2_start();
@@ -60,9 +82,11 @@ window.addEventListener('load', function () {
     setInterval(function () {
         diamondanim();
         planetoidanim();
+        ufoposition();
         shootanim();
         bul_vs_p1();
         bul_vs_p2();
+        bul_vs_ufo();
         diam_vs_ship();
         ship_vs_p1();
         ship_vs_p2();
@@ -100,6 +124,31 @@ window.addEventListener('load', function () {
         var diamond1Y = parseInt(diamond1.style.top);
         diamond1Y = diamond1Y + diamY;
         diamond1.style.top = diamond1Y + 'px';
+    };
+    //ufo anim and collision
+    var ufoposition = function () {
+        // ufoSpeed = 5;
+        var ufo = document.getElementById('ufo');
+        ufoLeft = parseInt(ufo.style.left);
+        ufoRight = ufoLeft + ufo.offsetWidth;
+        if (direction == 'right') {
+            if (ufoRight >= BOARD_RIGHT) {
+                direction = 'left';
+                ufoSpeed = -ufoSpeed;
+            }
+        }
+        if (direction == 'left') {
+            if (ufoLeft <= BOARD_LEFT) {
+                direction = 'right';
+            }
+        }
+        ufoLeft = ufoLeft + ufoSpeed;
+        ufoRight = ufoLeft + ufo.offsetWidth;
+        ufo.style.left = ufoLeft + 'px';
+        if (ufoLeft <= BOARD_LEFT) {
+            ufoSpeed = -ufoSpeed;
+            return ufoSpeed;
+        }
     };
     //planetoids
     var planetoid2_start = function () {
@@ -166,7 +215,7 @@ window.addEventListener('load', function () {
             diamond1_start();
         }
     };
-});
+};
 //collisions
 var bul_vs_p1 = function () {
     var bullet = document.getElementById('bullet');
@@ -199,6 +248,23 @@ var bul_vs_p2 = function () {
         shoot();
         score_count(1);
     }
+};
+var bul_vs_ufo = function () {
+    var bullet = document.getElementById('bullet');
+    var bul_top = parseInt(bullet.style.top);
+    var bul_bottom = parseInt(bullet.style.top) + parseInt(bullet.style.height);
+    var bul_left = parseInt(bullet.style.left);
+    var bul_right = bul_left + 4;
+    var ufo = document.getElementById('ufo');
+    var ufo_top = parseInt(ufo.style.top);
+    var ufo_bottom = ufo_top + ufo.offsetHeight;
+    var ufo_left = parseInt(ufo.style.left);
+    var ufo_right = ufo_left + ufo.offsetWidth;
+    if (bul_top < ufo_bottom && bul_left > ufo_left && bul_right < ufo_right) {
+        shoot();
+        score_count(10);
+    }
+    console.log(bul_right);
 };
 var ship_vs_p1 = function () {
     var ship = document.getElementById('ship');
