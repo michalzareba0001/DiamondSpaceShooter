@@ -19,6 +19,9 @@
   z-index: 10;
   padding: 3em;
 }
+#startScreen .red {
+  color: #e90303;
+}
 #startScreen h1 {
   font-family: "Trispace", sans-serif;
   font-size: 4em;
@@ -191,6 +194,26 @@
 #main #board #ufo img {
   width: 120px;
 }
+#main #board #ufoExplosion {
+  position: absolute;
+  left: 650px;
+  top: 5px;
+  width: 120px;
+  opacity: 0;
+}
+#main #board #ufoExplosion img {
+  width: 120px;
+}
+#main #board #shipExplosion {
+  position: absolute;
+  left: 650px;
+  top: 5px;
+  width: 120px;
+  opacity: 0;
+}
+#main #board #shipExplosion img {
+  width: 120px;
+}
 #main #board #diamond1 {
   position: absolute;
   top: 10px;
@@ -207,4 +230,20 @@
   grid-column-end: 4;
   width: 100%;
   padding: 1em;
+}
+
+#nobonus {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  width: 50%;
+  height: 50%;
+  border: 2px solid #000000;
+  background-color: rgba(254, 236, 0, 0.7);
+  border-radius: 20px;
+  z-index: 10;
+  padding: 3em;
 }/*# sourceMappingURL=shooter.css.map */

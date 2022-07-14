@@ -132,7 +132,6 @@ var loadAll = function () {
     };
     //ufo anim and collision
     var ufoposition = function () {
-        // ufoSpeed = 5;
         var ufo = document.getElementById('ufo');
         ufoLeft = parseInt(ufo.style.left);
         ufoRight = ufoLeft + ufo.offsetWidth;
@@ -285,6 +284,8 @@ var ufobul_vs_ship = function () {
     if (ufobul_bottom > ship_top && ufobul_top < ship_bottom && ufobul_left > ship_left && ufobul_right < ship_right) {
         lives_count(1);
         ufoshoot();
+        ship.style.display = 'none';
+        shipExplosion();
     }
 };
 var ship_vs_p1 = function () {
@@ -302,9 +303,7 @@ var ship_vs_p1 = function () {
         lives_count(1);
         planetoid1.style.top = -200 + 'px';
         ship.style.display = 'none';
-        setTimeout(function () {
-            ship.style.display = 'block';
-        }, 200);
+        shipExplosion();
     }
 };
 var ship_vs_p2 = function () {
@@ -322,9 +321,7 @@ var ship_vs_p2 = function () {
         lives_count(1);
         planetoid2.style.top = -200 + 'px';
         ship.style.display = 'none';
-        setTimeout(function () {
-            ship.style.display = 'block';
-        }, 200);
+        shipExplosion();
     }
 };
 //score and lives
@@ -336,8 +333,7 @@ var lives_count = function (b) {
     lives = lives - b;
     document.getElementById('lives_cell').innerHTML = '' + lives;
     if (lives == 0) {
-        alert('Game Over');
-        location.reload();
+        game_over();
     }
 };
 var ufo_lives_count = function (c) {
@@ -345,6 +341,8 @@ var ufo_lives_count = function (c) {
     if (ufo_lives == 0) {
         document.getElementById('ufo').style.display = 'none';
         score_count(300);
+        ufoExplosion();
+        ufo_lives = 3;
     }
 };
 //shooting
@@ -377,4 +375,40 @@ var ufoshootanim = function () {
     var ufobulletY = parseInt(ufobullet.style.top);
     ufobulletY = ufobulletY + ufoshootY;
     ufobullet.style.top = ufobulletY + 'px';
+};
+var ufoExplosion = function () {
+    var ufo = document.getElementById('ufo');
+    var ufoExplosion = document.getElementById('ufoExplosion');
+    ufoExplosion.style.opacity = '1';
+    ufoExplosion.style.left = ufo.style.left;
+    ufoExplosion.style.top = ufo.style.top;
+    setTimeout(function () {
+        ufoExplosion.style.opacity = '0';
+        ufo.style.display = 'block';
+    }, 500);
+};
+var shipExplosion = function () {
+    var ship = document.getElementById('ship');
+    var shipExplosion = document.getElementById('shipExplosion');
+    shipExplosion.style.opacity = '1';
+    shipExplosion.style.left = ship.style.left;
+    shipExplosion.style.top = ship.style.top;
+    setTimeout(function () {
+        shipExplosion.style.opacity = '0';
+        ship.style.display = 'block';
+    }, 500);
+};
+var game_over = function () {
+    if (score < 500) {
+        alert('Twój wynik to: ' + score + '.\n Niestety tym razem nie udało Ci się zgarnąc rabatu.\n Spróbuj jeszcze raz!');
+        location.reload();
+    }
+    if (score >= 500 && score < 2000) {
+        alert('Twój wynik to: ' + score + '.\n Gratulacje!!! Zgarniasz 5% rabatu!!!\n KOD RABATOWY: DDSPACESHOOTER5BONUS');
+        location.reload();
+    }
+    if (score >= 2000) {
+        alert('Twój wynik to: ' + score + '.\n Gratulacje!!! Zgarniasz 10% rabatu!!!\n KOD RABATOWY: DDSPACESHOOTERBONUS10');
+        location.reload();
+    }
 };

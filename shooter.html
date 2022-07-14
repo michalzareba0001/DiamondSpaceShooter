@@ -16,13 +16,18 @@
 
         <h1>Diamond Shooter</h1>
         <h2>Zagraj o rabat</h2>
-        <h3>Zdobądź 5000 punktów żeby otrzymać 5% rabatu</h3>
-        <h3>Zdobądź 10000 punktów zgarnij 10% rabatu</h3><br />
+        <h3>Zdobądź <span class="red">500 punktów</span> żeby otrzymać <span class="red">5% rabatu</span></h3>
+        <h3>Zdobądź <span class="red"> 2000 punktów</span> zgarnij <span class="red">10% rabatu</span></h3><br />
         <div class="btnContainer">
             <button class="btn-7" onclick="startbtn()"><span>Start</span></button>
         </div>
     </div>
+   
     <container id="main">
+
+        <div id="infosection">
+
+        </div>
         <div id="board">
             <div id="astro1">
                 <img src="./graf/uranus.png">
@@ -33,6 +38,9 @@
             </div>
             <div id="bullet"></div>
             <div id="ufobullet"></div>
+            <div id="ufoExplosion">
+                <img src="./img/wybuch-02.svg">
+            </div>
             <div id="planetoid1">
                 <img src="./img/asteroida1-05.svg">
             </div>
@@ -47,6 +55,9 @@
             <div id="ship">
                 <img src="./img/spaceman_Obszar roboczy 1.svg" id="ship_img">
             </div>
+            <div id="shipExplosion">
+                <img src="./img/wybuch-02.svg">
+            </div>
 
         </div>
         <div id="gamestats">
@@ -58,7 +69,6 @@
             </div>
         </div>
     </container>
-
 </body>
 
 </html>
