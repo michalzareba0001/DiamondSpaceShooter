@@ -234,7 +234,7 @@ var bul_vs_p1 = function () {
     var p1_right = parseInt(planetoid1.style.left) + parseInt(planetoid1.style.width);
     if (bul_top < p1_bottom && bul_top > p1_top && bul_left > p1_left && bul_right < p1_right) {
         shoot();
-        score_count(1);
+        score_count(2);
     }
 };
 var bul_vs_p2 = function () {
@@ -250,7 +250,7 @@ var bul_vs_p2 = function () {
     var p2_right = parseInt(planetoid2.style.left) + parseInt(planetoid2.style.width);
     if (bul_top < p2_bottom && bul_top > p2_top && bul_left > p2_left && bul_right < p2_right) {
         shoot();
-        score_count(1);
+        score_count(5);
     }
 };
 var bul_vs_ufo = function () {
@@ -340,7 +340,7 @@ var ufo_lives_count = function (c) {
     ufo_lives = ufo_lives - c;
     if (ufo_lives == 0) {
         document.getElementById('ufo').style.display = 'none';
-        score_count(300);
+        score_count(50);
         ufoExplosion();
         ufo_lives = 3;
     }
