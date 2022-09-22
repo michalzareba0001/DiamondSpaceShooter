@@ -205,7 +205,7 @@
   position: absolute;
 }
 #main #board #ship #ship_img {
-  max-width: 100px;
+  max-width: 80px;
 }
 #main #board #astro1 {
   position: relative;
@@ -321,4 +321,31 @@
   border-radius: 20px;
   z-index: 10;
   padding: 3em;
+}
+
+@media screen and (max-width: 780px) {
+  #main {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #main astro1 {
+    z-index: -5;
+  }
+  #main #gamestats {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    width: 100%;
+    color: rgb(255, 255, 0);
+    text-shadow: #000000 1px 1px 1px;
+  }
+  #main #board {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    width: 100%;
+    height: 100vh;
+  }
 }/*# sourceMappingURL=shooter.css.map */

@@ -2,7 +2,7 @@
 //creators
 
 const sp_ship = {
-    width: 100,
+    width: 80,
     height: 100
 };
 
