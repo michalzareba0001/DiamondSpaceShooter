@@ -26,6 +26,11 @@ const juefo = {
     height: 77
 }
 
+const laser1 = new Audio('./sound/ready/laser1.mp3');
+const laser2 = new Audio('./sound/ready/laser2.mp3');
+const hit1 = new Audio('./sound/ready/hit1.mp3');
+const hit2 = new Audio('./sound/ready/hit2.mp3');
+const collect = new Audio('./sound/ready/collect.mp3');
 
 //virables
 
@@ -275,6 +280,7 @@ let loadAll = () => {
         if (diam_bottom > ship_top && diam_top < ship_bottom && diam_left > ship_left && diam_right < ship_right) {
             score_count(100);
             diamond1_start();
+            collect.play();
         }
     }
 };
@@ -441,6 +447,7 @@ let shoot = () => {
     bullet.style.opacity = '1';
     bullet.style.left = shoot_startx + 'px';
     bullet.style.top = shoot_starty + 'px';
+    laser2.play();
 }
 
 let shootanim = () => {
@@ -458,6 +465,7 @@ let ufoshoot = () => {
     ufobullet.style.opacity = '1';
     ufobullet.style.left = ufoshoot_startx + 'px';
     ufobullet.style.top = ufoshoot_starty + 'px';
+    laser1.play();
 }
 
 let ufoshootanim = () => {
@@ -473,6 +481,7 @@ let ufoExplosion = () => {
     ufoExplosion.style.opacity = '1';
     ufoExplosion.style.left = ufo.style.left;
     ufoExplosion.style.top = ufo.style.top;
+    hit1.play();
     setTimeout(function () {
         ufoExplosion.style.opacity = '0';
         ufo.style.display = 'block';
@@ -485,6 +494,7 @@ let shipExplosion = () => {
     shipExplosion.style.opacity = '1';
     shipExplosion.style.left = ship.style.left;
     shipExplosion.style.top = ship.style.top;
+    hit2.play();
     setTimeout(function () {
         shipExplosion.style.opacity = '0';
         ship.style.display = 'block';

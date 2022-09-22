@@ -19,6 +19,11 @@ var juefo = {
     width: 120,
     height: 77
 };
+var laser1 = new Audio('./sound/ready/laser1.mp3');
+var laser2 = new Audio('./sound/ready/laser2.mp3');
+var hit1 = new Audio('./sound/ready/hit1.mp3');
+var hit2 = new Audio('./sound/ready/hit2.mp3');
+var collect = new Audio('./sound/ready/collect.mp3');
 //virables
 var shootY = -15;
 var ufoshootY = 18;
@@ -217,6 +222,7 @@ var loadAll = function () {
         if (diam_bottom > ship_top && diam_top < ship_bottom && diam_left > ship_left && diam_right < ship_right) {
             score_count(100);
             diamond1_start();
+            collect.play();
         }
     };
 };
@@ -354,6 +360,7 @@ var shoot = function () {
     bullet.style.opacity = '1';
     bullet.style.left = shoot_startx + 'px';
     bullet.style.top = shoot_starty + 'px';
+    laser2.play();
 };
 var shootanim = function () {
     var bullet = document.getElementById('bullet');
@@ -369,6 +376,7 @@ var ufoshoot = function () {
     ufobullet.style.opacity = '1';
     ufobullet.style.left = ufoshoot_startx + 'px';
     ufobullet.style.top = ufoshoot_starty + 'px';
+    laser1.play();
 };
 var ufoshootanim = function () {
     var ufobullet = document.getElementById('ufobullet');
@@ -382,6 +390,7 @@ var ufoExplosion = function () {
     ufoExplosion.style.opacity = '1';
     ufoExplosion.style.left = ufo.style.left;
     ufoExplosion.style.top = ufo.style.top;
+    hit1.play();
     setTimeout(function () {
         ufoExplosion.style.opacity = '0';
         ufo.style.display = 'block';
@@ -393,6 +402,7 @@ var shipExplosion = function () {
     shipExplosion.style.opacity = '1';
     shipExplosion.style.left = ship.style.left;
     shipExplosion.style.top = ship.style.top;
+    hit2.play();
     setTimeout(function () {
         shipExplosion.style.opacity = '0';
         ship.style.display = 'block';
