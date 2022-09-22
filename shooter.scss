@@ -385,11 +385,15 @@
 //mobile
 
 @media screen and (max-width: 780px) {
+  #startScreen {
+    border-radius: 0;
+  }
+
   #main{
     display: grid;
     grid-template-columns: 1fr;
 
-    astro1{
+    #astro1{
       z-index: -5;
     }
 
@@ -412,4 +416,35 @@
       height: 100vh;
     }
   }
+}
+
+//tablet
+
+@media (min-width: 768px) and (max-width: 1024px){
+  #main{
+    display: grid;
+    grid-template-columns: 60% 1fr;
+
+    #board {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+
+    #gamestats {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+
+    #infosection{
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+  }
+
 }
