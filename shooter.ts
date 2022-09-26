@@ -155,6 +155,25 @@ let loadAll = () => {
 
     });
 
+    document.addEventListener('touchmove', function(e) {
+        // grab the location of touch
+        var touchLocation = e.targetTouches[0];
+        
+        // assign box new coordinates based on the touch.
+        ship.style.left = touchLocation.pageX - (sp_ship.width/2) + 'px';
+        ship.style.top = touchLocation.pageY - sp_ship.height + 'px';
+      })
+      
+      /* record the position of the touch
+      when released using touchend event.
+      This will be the drop position. */
+      
+    document.addEventListener('touchend', function(e) {
+        // current box position.
+        var x = parseInt(ship.style.left);
+        var y = parseInt(ship.style.top);
+      })
+
     //diamonds
 
     let diamond1_start = () => {

@@ -5,6 +5,21 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+body {
+  position: fixed;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
 #startScreen {
   position: fixed;
   display: flex;
@@ -239,7 +254,7 @@
 }
 #main #board #planetoid1 {
   position: absolute;
-  left: 800px;
+  left: 200px;
   top: 50px;
   width: 150px;
   height: 150px;
@@ -250,7 +265,7 @@
 }
 #main #board #planetoid2 {
   position: absolute;
-  left: 1000px;
+  left: 150px;
   top: 50px;
   width: 200px;
   height: 200px;
@@ -261,7 +276,7 @@
 }
 #main #board #ufo {
   position: absolute;
-  left: 650px;
+  left: 200px;
   top: 5px;
   width: 120px;
   height: 77px;
@@ -326,10 +341,17 @@
 @media screen and (max-width: 780px) {
   #startScreen {
     border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
   }
   #main {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  #main #infosection {
+    display: none;
   }
   #main #astro1 {
     z-index: -5;
@@ -348,7 +370,7 @@
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
   }
 }
