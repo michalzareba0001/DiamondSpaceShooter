@@ -17,8 +17,8 @@ const planet2 = {
 }
 
 const diamond = {
-    width: 60,
-    height: 60
+    width: 50,
+    height: 50
 }
 
 const juefo = {
@@ -36,9 +36,9 @@ const collect = new Audio('./sound/ready/collect.mp3');
 
 var shootY = -15;
 var ufoshootY = 18;
-var diamY = 15;
-var planetoidY = 12;
-var planetoidY2 = 15;
+var diamY = 13;
+var planetoidY = 10;
+var planetoidY2 = 6;
 var score = 0;
 var lives = 5;
 var ufoSpeed = 5;
@@ -102,14 +102,17 @@ let loadAll = () => {
         ufoshoot();
     }, 1600);
 
-    setInterval(function () {
+    /* setInterval(function () {
         planetoid1_start();
-        planetoid2_start();
     }, 3000);
 
     setInterval(function () {
+        planetoid2_start();
+    }, 6000); */
+
+    /*setInterval(function () {
         diamond1_start();
-    }, 5000);
+    }, 5000);*/
 
     setInterval(function () {
         diamondanim();
@@ -188,6 +191,9 @@ let loadAll = () => {
         let diamond1Y = parseInt(diamond1.style.top);
         diamond1Y = diamond1Y + diamY;
         diamond1.style.top = diamond1Y + 'px';
+        if (diamond1Y >= BOARD_HEIGHT) {
+            diamond1_start();
+        }
     }
     //ufo anim and collision
 
@@ -253,6 +259,12 @@ let loadAll = () => {
         planetoid2Y = planetoid2Y + planetoidY2;
         planetoid1.style.top = planetoid1Y + 'px';
         planetoid2.style.top = planetoid2Y + 'px';
+        if (planetoid1Y >= BOARD_HEIGHT) {
+            planetoid1_start();
+        }
+        if (planetoid2Y >= BOARD_HEIGHT) {
+            planetoid2_start();
+        }
     }
 
     let planetsPos2 = () => {
@@ -296,6 +308,7 @@ let loadAll = () => {
         var ship_left = parseInt(ship.style.left);
         var ship_right = ship_left + parseInt(ship.style.width);
 
+            
         if (diam_bottom > ship_top && diam_top < ship_bottom && diam_left > ship_left && diam_right < ship_right) {
             score_count(100);
             diamond1_start();
@@ -441,7 +454,9 @@ let lives_count = (b) => {
     lives = lives - b;
     document.getElementById('lives_cell').innerHTML = '' + lives;
     if (lives == 0) {
+        setTimeout(function () {
         game_over();
+        }, 10);
     }
 
 }

@@ -12,8 +12,8 @@ var planet2 = {
     height: 200
 };
 var diamond = {
-    width: 60,
-    height: 60
+    width: 50,
+    height: 50
 };
 var juefo = {
     width: 120,
@@ -27,9 +27,9 @@ var collect = new Audio('./sound/ready/collect.mp3');
 //virables
 var shootY = -15;
 var ufoshootY = 18;
-var diamY = 15;
-var planetoidY = 12;
-var planetoidY2 = 15;
+var diamY = 13;
+var planetoidY = 10;
+var planetoidY2 = 6;
 var score = 0;
 var lives = 5;
 var ufoSpeed = 5;
@@ -80,13 +80,16 @@ var loadAll = function () {
         shoot();
         ufoshoot();
     }, 1600);
-    setInterval(function () {
+    /* setInterval(function () {
         planetoid1_start();
-        planetoid2_start();
     }, 3000);
+
     setInterval(function () {
+        planetoid2_start();
+    }, 6000); */
+    /*setInterval(function () {
         diamond1_start();
-    }, 5000);
+    }, 5000);*/
     setInterval(function () {
         diamondanim();
         planetoidanim();
@@ -149,6 +152,9 @@ var loadAll = function () {
         var diamond1Y = parseInt(diamond1.style.top);
         diamond1Y = diamond1Y + diamY;
         diamond1.style.top = diamond1Y + 'px';
+        if (diamond1Y >= BOARD_HEIGHT) {
+            diamond1_start();
+        }
     };
     //ufo anim and collision
     var ufoposition = function () {
@@ -200,6 +206,12 @@ var loadAll = function () {
         planetoid2Y = planetoid2Y + planetoidY2;
         planetoid1.style.top = planetoid1Y + 'px';
         planetoid2.style.top = planetoid2Y + 'px';
+        if (planetoid1Y >= BOARD_HEIGHT) {
+            planetoid1_start();
+        }
+        if (planetoid2Y >= BOARD_HEIGHT) {
+            planetoid2_start();
+        }
     };
     var planetsPos2 = function () {
         var planetoid1 = document.getElementById('planetoid1');
@@ -354,7 +366,9 @@ var lives_count = function (b) {
     lives = lives - b;
     document.getElementById('lives_cell').innerHTML = '' + lives;
     if (lives == 0) {
-        game_over();
+        setTimeout(function () {
+            game_over();
+        }, 10);
     }
 };
 var ufo_lives_count = function (c) {
