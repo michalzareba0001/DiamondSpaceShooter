@@ -45,6 +45,7 @@ var startbtn = function () {
     var startScreen = document.getElementById('startScreen');
     startScreen.style.display = 'none';
     loadAll();
+    shoot();
 };
 // Load all elements
 var loadAll = function () {
@@ -77,7 +78,7 @@ var loadAll = function () {
     ufo.style.width = juefo.width + 'px';
     ufo.style.height = juefo.height + 'px';
     setInterval(function () {
-        shoot();
+        //    shoot();
         ufoshoot();
     }, 1600);
     /* setInterval(function () {
@@ -113,11 +114,11 @@ var loadAll = function () {
         var ship = document.getElementById('ship');
         var x = e.clientX;
         var y = e.clientY;
-        if (x >= BOARD_RIGHT - sp_ship.width / 1.5) {
-            x = BOARD_RIGHT - sp_ship.width / 1.5;
+        if (x >= BOARD_RIGHT - sp_ship.width / 2) {
+            x = BOARD_RIGHT - sp_ship.width / 2;
         }
-        if (x <= BOARD_LEFT - sp_ship.width / 3) {
-            x = BOARD_LEFT - sp_ship.width / 3;
+        if (x <= BOARD_LEFT - sp_ship.width / 2) {
+            x = BOARD_LEFT - sp_ship.width / 2;
         }
         if (y >= BOARD_HEIGHT - sp_ship.height) {
             y = BOARD_HEIGHT - sp_ship.height;
@@ -365,7 +366,7 @@ var score_count = function (a) {
 var lives_count = function (b) {
     lives = lives - b;
     document.getElementById('lives_cell').innerHTML = '' + lives;
-    if (lives == 0) {
+    if (lives < 1) {
         setTimeout(function () {
             game_over();
         }, 10);
@@ -396,6 +397,9 @@ var shootanim = function () {
     var bulletY = parseInt(bullet.style.top);
     bulletY = bulletY + shootY;
     bullet.style.top = bulletY + 'px';
+    if (bulletY < 0) {
+        shoot();
+    }
 };
 var ufoshoot = function () {
     var ufo = document.getElementById('ufo');
