@@ -19,11 +19,11 @@ var juefo = {
     width: 120,
     height: 77
 };
-var laser1 = new Audio('./sound/ready/laser1.mp3');
-var laser2 = new Audio('./sound/ready/laser2.mp3');
-var hit1 = new Audio('./sound/ready/hit1.mp3');
-var hit2 = new Audio('./sound/ready/hit2.mp3');
-var collect = new Audio('./sound/ready/collect.mp3');
+var laser1 = new Audio('/sound/ready/laser1.mp3');
+var laser2 = new Audio('/sound/ready/laser2.mp3');
+var hit1 = new Audio('/sound/ready/hit1.mp3');
+var hit2 = new Audio('/sound/ready/hit2.mp3');
+var collect = new Audio('/sound/ready/collect.mp3');
 //virables
 var shootY = -15;
 var ufoshootY = 18;
@@ -159,27 +159,17 @@ var loadAll = function () {
     };
     //ufo anim and collision
     var ufoposition = function () {
-        var ufo = document.getElementById('ufo');
-        ufoLeft = parseInt(ufo.style.left);
-        ufoRight = ufoLeft + ufo.offsetWidth;
-        if (direction == 'right') {
-            if (ufoRight >= BOARD_RIGHT) {
-                direction = 'left';
-                ufoSpeed = -ufoSpeed;
-            }
+        var ufoLeft = parseInt(ufo.style.left);
+        var ufoRight = ufoLeft + ufo.offsetWidth;
+        if (ufoRight >= BOARD_RIGHT) {
+            ufoSpeed = -ufoSpeed;
         }
-        if (direction == 'left') {
-            if (ufoLeft <= BOARD_LEFT) {
-                direction = 'right';
-            }
+        if (ufoLeft < BOARD_LEFT) {
+            ufoSpeed = -ufoSpeed;
         }
         ufoLeft = ufoLeft + ufoSpeed;
         ufoRight = ufoLeft + ufo.offsetWidth;
-        ufo.style.left = ufoLeft + 'px';
-        if (ufoLeft <= BOARD_LEFT) {
-            ufoSpeed = -ufoSpeed;
-            return ufoSpeed;
-        }
+        ufo.style.left = "".concat(ufoLeft, "px");
     };
     //planetoids
     var planetoid2_start = function () {
@@ -455,3 +445,5 @@ var game_over = function () {
         location.reload();
     }
 };
+// window resize
+window.onresize = function () { location.reload(); };

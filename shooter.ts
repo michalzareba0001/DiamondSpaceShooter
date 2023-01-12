@@ -26,11 +26,11 @@ const juefo = {
     height: 77
 }
 
-const laser1 = new Audio('./sound/ready/laser1.mp3');
-const laser2 = new Audio('./sound/ready/laser2.mp3');
-const hit1 = new Audio('./sound/ready/hit1.mp3');
-const hit2 = new Audio('./sound/ready/hit2.mp3');
-const collect = new Audio('./sound/ready/collect.mp3');
+const laser1 = new Audio('/sound/ready/laser1.mp3');
+const laser2 = new Audio('/sound/ready/laser2.mp3');
+const hit1 = new Audio('/sound/ready/hit1.mp3');
+const hit2 = new Audio('/sound/ready/hit2.mp3');
+const collect = new Audio('/sound/ready/collect.mp3');
 
 //virables
 
@@ -202,33 +202,21 @@ let loadAll = () => {
 
 
     let ufoposition = () => {
-        var ufo = document.getElementById('ufo');
-        ufoLeft = parseInt(ufo.style.left);
-        ufoRight = ufoLeft + ufo.offsetWidth;
-
-        if (direction == 'right') {
-            if (ufoRight >= BOARD_RIGHT) {
-                direction = 'left';
-                ufoSpeed = -ufoSpeed;
-            }
-
+        let ufoLeft = parseInt(ufo.style.left);
+        let ufoRight = ufoLeft + ufo.offsetWidth;
+        
+        if (ufoRight >= BOARD_RIGHT)  {
+            ufoSpeed = -ufoSpeed;
         }
-        if (direction == 'left') {
-            if (ufoLeft <= BOARD_LEFT) {
-                direction = 'right';
-            }
+        if (ufoLeft < BOARD_LEFT){
+            ufoSpeed = -ufoSpeed;
         }
+
         ufoLeft = ufoLeft + ufoSpeed;
         ufoRight = ufoLeft + ufo.offsetWidth;
-        ufo.style.left = ufoLeft + 'px';
-
-
-        if (ufoLeft <= BOARD_LEFT) {
-            ufoSpeed = -ufoSpeed;
-            return ufoSpeed;
-        }
-
+        ufo.style.left = `${ufoLeft}px`;
     }
+        
 
 
 
@@ -555,4 +543,10 @@ let game_over = () => {
         location.reload();
     }
 }
+
+// window resize
+
+window.onresize = function(){ location.reload(); }
+
+
 
