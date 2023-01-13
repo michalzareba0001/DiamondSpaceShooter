@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Trispace:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +19,7 @@ body {
   height: 100vh !important;
   overflow-x: hidden !important;
   overflow-y: hidden !important;
+  font-family: "Lexend Deca", sans-serif;
 }
 
 #startScreen {
@@ -321,6 +323,17 @@ body {
   width: 100%;
   padding: 1em;
 }
+#main #gamestats .rabat-info {
+  font-size: 26px;
+  text-align: center;
+  margin-top: 300px;
+}
+#main #gamestats .rabat-info h3 {
+  margin-top: 20px;
+}
+#main #gamestats .rabat-info .red {
+  color: #ff0000;
+}
 
 #nobonus {
   position: fixed;
@@ -338,6 +351,36 @@ body {
   padding: 3em;
 }
 
+#game-over-screen {
+  background-color: #000000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+}
+#game-over-screen h1 {
+  font-size: 70px;
+  font-weight: 900;
+}
+#game-over-screen p {
+  font-size: 24px;
+  text-align: center;
+  padding: 10px 30px 10px 30px;
+  line-height: 36px;
+}
+
+@media screen and (max-width: 1440px) {
+  .rabat-info {
+    display: none;
+  }
+}
 @media screen and (max-width: 780px) {
   #startScreen {
     border-radius: 0;

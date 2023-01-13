@@ -60,6 +60,8 @@ let startbtn = () => {
 
 }
 
+var allMovementInterval;
+
 
 
 // Load all elements
@@ -100,7 +102,7 @@ let loadAll = () => {
 
     
 
-    setInterval(function () {
+    let ufoInterval = setInterval(function () {
     //    shoot();
         ufoshoot();
     }, 1600);
@@ -117,7 +119,7 @@ let loadAll = () => {
         diamond1_start();
     }, 5000);*/
 
-    setInterval(function () {
+    let allMovementInterval = setInterval(function () {
         diamondanim();
         planetoidanim();
         ufoposition();
@@ -130,7 +132,7 @@ let loadAll = () => {
         diam_vs_ship();
         ship_vs_p1();
         ship_vs_p2();
-    }, 30);
+    }, 1000/30);
 
 
     //random position
@@ -529,19 +531,38 @@ let shipExplosion = () => {
     }, 500);
 }
 
+
+var myScore = document.getElementById('myscore');
+var sentencja = document.getElementById('sentencja'); 
+var gameoverScreen = document.getElementById('game-over-screen');
 let game_over = () => {
+
+    myScore.innerHTML = score.toString();
+    gameoverScreen.style.display = 'flex';
+    
     if (score<500){
-        alert('Twój wynik to: ' + score + '.\n Niestety tym razem nie udało Ci się zgarnąc rabatu.\n Spróbuj jeszcze raz!');
-        location.reload();
+        sentencja.innerHTML = 'Niestety tym razem nie udało Ci się zgarnąc rabatu. Spróbuj jeszcze raz!';
+        //      alert('Twój wynik to: ' + score + '.\n Niestety tym razem nie udało Ci się zgarnąc rabatu.\n Spróbuj jeszcze raz!');
+  //      location.reload();
     }
     if (score>=500 && score<2000){
-        alert('Twój wynik to: ' + score + '.\n Gratulacje!!! Zgarniasz 5% rabatu!!!\n KOD RABATOWY: DDSPACESHOOTER5BONUS');
-        location.reload();
+        sentencja.innerHTML = 'Gratulacje!!! Zgarniasz 5% rabatu!!! KOD RABATOWY: DDSPACESHOOTER5BONUS';
+
+        // alert('Twój wynik to: ' + score + '.\n Gratulacje!!! Zgarniasz 5% rabatu!!!\n KOD RABATOWY: DDSPACESHOOTER5BONUS');
+        // location.reload();
     }
     if (score>=2000){
-        alert('Twój wynik to: ' + score + '.\n Gratulacje!!! Zgarniasz 10% rabatu!!!\n KOD RABATOWY: DDSPACESHOOTERBONUS10');
-        location.reload();
+        sentencja.innerHTML = 'Gratulacje!!! Zgarniasz 10% rabatu!!!\n KOD RABATOWY: DDSPACESHOOTERBONUS10';
+
+        // alert('Twój wynik to: ' + score + '.\n Gratulacje!!! Zgarniasz 10% rabatu!!!\n KOD RABATOWY: DDSPACESHOOTERBONUS10');
+        // location.reload();
     }
+    setTimeout(()=>{
+        window.alert('GAME OVER');
+        location.reload();
+
+    },100);
+
 }
 
 // window resize
